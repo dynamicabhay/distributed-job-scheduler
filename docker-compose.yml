@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: distributed-job-scheduler-postgres
+
+    environment:
+      POSTGRES_DB: job_scheduler
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - scheduler_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  scheduler_postgres_data:
