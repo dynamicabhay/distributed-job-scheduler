@@ -1,9 +1,9 @@
-package com.schedulerApi.domain;
+package com.common.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.DialectOverride;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Persistable;
 
@@ -14,6 +14,7 @@ import java.util.UUID;
 @Table(name = "idempotency_keys")
 @Getter
 @Setter
+@NoArgsConstructor
 public class IdempotencyKey implements Persistable<String> {
 
     @Id
@@ -28,10 +29,6 @@ public class IdempotencyKey implements Persistable<String> {
 
     @Transient
     private boolean isNew = true;
-
-    public IdempotencyKey() {
-    }
-
 
     @Override
     public @Nullable String getId() {

@@ -1,9 +1,10 @@
-package com.schedulerApi.domain;
+package com.common.enums;
 
 public enum ScheduleStatus {
     SCHEDULED,
     PROCESSING,
     CANCELLED,
     ACTIVE,
-    COMPLETED
+    COMPLETED,
+    DISPATCHED
 }

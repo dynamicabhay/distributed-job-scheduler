@@ -1,10 +1,9 @@
 package com.schedulerApi.dto;
 
-import com.schedulerApi.domain.ScheduleType;
+import com.common.enums.ScheduleJobType;
+import com.common.enums.ScheduleType;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
 import tools.jackson.databind.JsonNode;
 import jakarta.validation.constraints.NotBlank;
 
@@ -15,5 +14,7 @@ public record ScheduleRequest (
         String scheduleDefinition,
 
         @NotNull
-        JsonNode payload
+        JsonNode payload,
+
+        @NotNull ScheduleJobType jobType
 ){}

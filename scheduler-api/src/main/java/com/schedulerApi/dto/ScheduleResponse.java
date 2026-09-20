@@ -1,6 +1,6 @@
 package com.schedulerApi.dto;
 
-import com.schedulerApi.domain.ScheduleStatus;
+import com.common.enums.ScheduleStatus;
 
 import java.time.Instant;
 import java.util.UUID;

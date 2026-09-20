@@ -1,14 +1,14 @@
 package com.schedulerApi.service;
 
-import com.schedulerApi.domain.IdempotencyKey;
-import com.schedulerApi.domain.ScheduleJob;
+import com.common.domain.IdempotencyKey;
+import com.common.domain.ScheduleJob;
 import com.schedulerApi.dto.ScheduleRequest;
 import com.schedulerApi.dto.ScheduleResponse;
 import com.schedulerApi.exception.DuplicateIdempotencyKey;
 import com.schedulerApi.exception.IdempotencyKeyNotFound;
 import com.schedulerApi.exception.ScheduleJobNotFound;
-import com.schedulerApi.repository.IdempotencyKeyRepository;
-import com.schedulerApi.repository.ScheduleJobRepository;
+import com.common.repository.IdempotencyKeyRepository;
+import com.common.repository.ScheduleJobRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -14,5 +14,19 @@ services:
     volumes:
       - scheduler_postgres_data:/var/lib/postgresql/data
 
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: distributed-job-scheduler-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbit
+      RABBITMQ_DEFAULT_PASS: rabbit
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - scheduler_rabbitmq_data:/var/lib/rabbitmq
+
 volumes:
   scheduler_postgres_data:
+  scheduler_rabbitmq_data:

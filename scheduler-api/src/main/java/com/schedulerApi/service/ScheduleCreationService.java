@@ -1,19 +1,23 @@
 package com.schedulerApi.service;
 
-import com.schedulerApi.domain.IdempotencyKey;
-import com.schedulerApi.domain.ScheduleJob;
-import com.schedulerApi.domain.ScheduleStatus;
+import com.common.domain.IdempotencyKey;
+import com.common.domain.ScheduleJob;
+import com.common.enums.ScheduleStatus;
+import com.common.enums.ScheduleType;
 import com.schedulerApi.dto.ScheduleRequest;
 import com.schedulerApi.dto.ScheduleResponse;
-import com.schedulerApi.repository.IdempotencyKeyRepository;
-import com.schedulerApi.repository.ScheduleJobRepository;
+import com.common.repository.IdempotencyKeyRepository;
+import com.common.repository.ScheduleJobRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class ScheduleCreationService {
     private IdempotencyKeyRepository idempotencyKeyRepository;
     private ScheduleJobRepository scheduleJobRepository;
@@ -30,9 +34,17 @@ public class ScheduleCreationService {
         // first we have to create/insert the job
 
         ScheduleJob job = new ScheduleJob();
-        Instant nextRun = Instant.parse(request.scheduleDefinition());
+        Instant nextRun = Instant.now();
+        if(request.scheduleType() == ScheduleType.FIXED_INTERVAL)
+        {
+            nextRun.plus(Duration.parse(request.scheduleDefinition()));
+        }
+        else nextRun = Instant.parse(request.scheduleDefinition());
+
+        log.info("nextRun: " + nextRun.toString());
         String requestHash = requestHashService.generateHash(request);
         job.setScheduleType(request.scheduleType());
+        job.setScheduleJobType(request.jobType());
         job.setScheduleDefinition(request.scheduleDefinition());
         job.setJobId(UUID.randomUUID());
         job.setPayload(request.payload());

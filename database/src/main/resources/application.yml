@@ -1,6 +1,6 @@
 spring:
   application:
-    name: scheduler-api
+    name: flyway-db-migration
 
   datasource:
     url: jdbc:postgresql://localhost:5432/job_scheduler
@@ -8,7 +8,5 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    show-sql: true
+  flyway:
+    enabled: true

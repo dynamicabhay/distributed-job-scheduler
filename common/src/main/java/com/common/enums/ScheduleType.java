@@ -1,4 +1,4 @@
-package com.schedulerApi.domain;
+package com.common.enums;
 
 public enum ScheduleType {
     ONCE,

@@ -1,5 +1,8 @@
-package com.schedulerApi.domain;
+package com.common.domain;
 
+import com.common.enums.ScheduleJobType;
+import com.common.enums.ScheduleStatus;
+import com.common.enums.ScheduleType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +10,6 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Persistable;
-import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.JsonNode;
 
 import java.time.Instant;
@@ -25,6 +27,10 @@ public class ScheduleJob implements Persistable<UUID> {
     @Enumerated(EnumType.STRING)
     @Column(name = "schedule_type", nullable = false, length = 50)
     private ScheduleType scheduleType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "schedule_job_type", nullable = false, length = 50)
+    private ScheduleJobType scheduleJobType;
 
     @Column(name = "schedule_definition", nullable = false, length = 500)
     private String scheduleDefinition;

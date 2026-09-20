@@ -38,5 +38,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(MalformedPayloadException.class)
+    public ResponseEntity<ApiErrorResponse> malformedPayloadException(MalformedPayloadException ex){
+        ApiErrorResponse res = ApiErrorResponse.builder().code("INCORRECT_PAYLOAD")
+                .message(ex.getMessage())
+                .createdAt(Instant.now())
+                .build();
+        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
+    }
+
 
 }

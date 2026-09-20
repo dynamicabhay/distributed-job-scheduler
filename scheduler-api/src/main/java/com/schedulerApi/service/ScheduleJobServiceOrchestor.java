@@ -1,6 +1,6 @@
 package com.schedulerApi.service;
 
-import com.schedulerApi.domain.ScheduleType;
+import com.common.enums.ScheduleType;
 import com.schedulerApi.dto.ScheduleRequest;
 import com.schedulerApi.dto.ScheduleResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -20,8 +20,8 @@ public class ScheduleJobServiceOrchestor {
 
     public ScheduleResponse createSchedule(String idempotencyKey, ScheduleRequest request){
 
-        if(request.scheduleType() != ScheduleType.ONCE)
-            throw new IllegalArgumentException("only ONCE scheduletype is currently accepted");
+//        if(request.scheduleType() != ScheduleType.ONCE)
+//            throw new IllegalArgumentException("only ONCE scheduletype is currently accepted");
 
       try{
          return scheduleCreationService.createSchedule(idempotencyKey,request);
